@@ -39,7 +39,7 @@ def save_imgs(folder,img_addrs):
             img = url_open(each)
             f.write(img)
 
-def Download_mm(folder = 'OOXX',pages = 10):
+def Download_mm(folder = 'OOXX',pages = 2):
     os.mkdir(folder)
     os.chdir(folder)
 
@@ -48,7 +48,7 @@ def Download_mm(folder = 'OOXX',pages = 10):
 
     for i in range(pages):
         page_num -= i
-        page_url = url + 'page-' + str(page_num) + 'comments'
+        page_url = url + 'page-' + str(page_num) + '#comments'
         img_addrs = find_imgs(page_url)
         save_imgs(folder,img_addrs)
 
