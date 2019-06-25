@@ -29,6 +29,7 @@ def find_imgs(url):
             img_addrs.append(html[a+9:b+4])
         else:
             b = a+9
+
         a = html.find('img src=',b)
     return img_addrs
 
