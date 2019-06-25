@@ -1,9 +1,17 @@
 import urllib.request
 import os
-
+import random
 def url_open(url):
     req = urllib.request.Request(url)
     req.add_header('User-Agent','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36')
+
+    proxies = ['119.6.144.70:81','111.1.36.9:80','203.144.144.162:8080']
+    proxy = random.choice(proxies)
+
+    proxy_support = urllib.request.ProxyHandler({'http':proxy})
+    opener = urllib.request.build_opener(proxy_support)
+    urllib.request.install_opener(opener)
+
     response = urllib.request.urlopen(url)
     html = response.read()
 
@@ -40,7 +48,7 @@ def save_imgs(folder,img_addrs):
             img = url_open(each)
             f.write(img)
 
-def Download_mm(folder = 'OOXX',pages = 2):
+def Download_mm(folder = 'OOXX',pages = 10):
     os.mkdir(folder)
     os.chdir(folder)
 
@@ -54,6 +62,6 @@ def Download_mm(folder = 'OOXX',pages = 2):
         save_imgs(folder,img_addrs)
 
 if __name__ == '__main__':
-    Download_mm()
+    Download_mm(folder = 'OOXX',pages = 10)
 
 
